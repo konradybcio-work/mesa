@@ -1282,6 +1282,7 @@ fd6_emit_restore(struct fd_batch *batch, struct fd_ringbuffer *ring)
    WRITE(REG_A6XX_UCHE_UNKNOWN_0E12, 0x13200000);
    WRITE(REG_A6XX_UCHE_CLIENT_PF, 4);
    WRITE(REG_A6XX_RB_UNKNOWN_8E01, 0x1);
+   WRITE(0xa600, 0x00220000);
    WRITE(REG_A6XX_SP_MODE_CONTROL,
          A6XX_SP_MODE_CONTROL_CONSTANT_DEMOTION_ENABLE | 4);
    WRITE(REG_A6XX_VFD_ADD_OFFSET, A6XX_VFD_ADD_OFFSET_VERTEX);
@@ -1430,7 +1431,7 @@ fd6_framebuffer_barrier(struct fd_context *ctx) assert_dt
    OUT_RING(ring, CP_WAIT_REG_MEM_5_DELAY_LOOP_CYCLES(16));
 
    fd6_event_write(batch, ring, PC_CCU_FLUSH_COLOR_TS, true);
-   fd6_event_write(batch, ring, PC_CCU_FLUSH_DEPTH_TS, true);
+//   fd6_event_write(batch, ring, PC_CCU_FLUSH_DEPTH_TS, true);
 
    seqno = fd6_event_write(batch, ring, CACHE_FLUSH_TS, true);
    fd_wfi(batch, ring);

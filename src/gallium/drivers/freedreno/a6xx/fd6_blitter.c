@@ -251,7 +251,7 @@ emit_setup(struct fd_batch *batch)
    struct fd_screen *screen = batch->ctx->screen;
 
    fd6_event_write(batch, ring, PC_CCU_FLUSH_COLOR_TS, true);
-   fd6_event_write(batch, ring, PC_CCU_FLUSH_DEPTH_TS, true);
+//   fd6_event_write(batch, ring, PC_CCU_FLUSH_DEPTH_TS, true);
    fd6_event_write(batch, ring, PC_CCU_INVALIDATE_COLOR, false);
    fd6_event_write(batch, ring, PC_CCU_INVALIDATE_DEPTH, false);
 
@@ -536,7 +536,7 @@ fd6_clear_ubwc(struct fd_batch *batch, struct fd_resource *rsc) assert_dt
    }
 
    fd6_event_write(batch, ring, PC_CCU_FLUSH_COLOR_TS, true);
-   fd6_event_write(batch, ring, PC_CCU_FLUSH_DEPTH_TS, true);
+//   fd6_event_write(batch, ring, PC_CCU_FLUSH_DEPTH_TS, true);
    fd6_event_write(batch, ring, CACHE_FLUSH_TS, true);
    fd_wfi(batch, ring);
    fd6_cache_inv(batch, ring);
@@ -914,7 +914,7 @@ fd6_clear_texture(struct pipe_context *pctx, struct pipe_resource *prsc,
    fd6_clear_surface(ctx, batch->draw, &surf, box, &color, 0);
 
    fd6_event_write(batch, batch->draw, PC_CCU_FLUSH_COLOR_TS, true);
-   fd6_event_write(batch, batch->draw, PC_CCU_FLUSH_DEPTH_TS, true);
+//   fd6_event_write(batch, batch->draw, PC_CCU_FLUSH_DEPTH_TS, true);
    fd6_event_write(batch, batch->draw, CACHE_FLUSH_TS, true);
    fd_wfi(batch, batch->draw);
    fd6_cache_inv(batch, batch->draw);
@@ -1066,7 +1066,7 @@ handle_rgba_blit(struct fd_context *ctx,
    trace_end_blit(&batch->trace, batch->draw);
 
    fd6_event_write(batch, batch->draw, PC_CCU_FLUSH_COLOR_TS, true);
-   fd6_event_write(batch, batch->draw, PC_CCU_FLUSH_DEPTH_TS, true);
+//   fd6_event_write(batch, batch->draw, PC_CCU_FLUSH_DEPTH_TS, true);
    fd6_event_write(batch, batch->draw, CACHE_FLUSH_TS, true);
    fd_wfi(batch, batch->draw);
    fd6_cache_inv(batch, batch->draw);

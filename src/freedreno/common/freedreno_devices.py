@@ -273,7 +273,7 @@ add_gpus([
         num_sp_cores = 1,
         num_ccu = 1,
         magic_regs = dict(
-            PC_POWER_CNTL = 1,
+            PC_POWER_CNTL = 0,
             TPL1_DBG_ECO_CNTL = 0,
             GRAS_DBG_ECO_CNTL = 0,
             SP_CHICKEN_BITS = 0x400,
@@ -282,9 +282,9 @@ add_gpus([
             SP_DBG_ECO_CNTL = 0x0, # TODO confirm
             # RB_DBG_ECO_CNTL = 0x04100000, # TODO confirm
             RB_DBG_ECO_CNTL_blit = 0x05100000, # TODO confirm
-            HLSQ_DBG_ECO_CNTL = 0x00080000, # TODO confirm
+            HLSQ_DBG_ECO_CNTL = 0,
             RB_UNKNOWN_8E01 = 0x00000001,
-            VPC_DBG_ECO_CNTL = 0x0,  # TODO confirm
+            VPC_DBG_ECO_CNTL = 0x0,
             UCHE_UNKNOWN_0E12 = 0x13200000
         )
     ))

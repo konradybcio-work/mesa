@@ -76,8 +76,8 @@ fd6_emit_flushes(struct fd_context *ctx, struct fd_ringbuffer *ring,
    if (flushes & (FD6_FLUSH_CCU_COLOR | FD6_INVALIDATE_CCU_COLOR))
       event_write(ctx, ring, PC_CCU_FLUSH_COLOR_TS);
 
-   if (flushes & (FD6_FLUSH_CCU_DEPTH | FD6_INVALIDATE_CCU_DEPTH))
-      event_write(ctx, ring, PC_CCU_FLUSH_DEPTH_TS);
+//   if (flushes & (FD6_FLUSH_CCU_DEPTH | FD6_INVALIDATE_CCU_DEPTH))
+//      event_write(ctx, ring, PC_CCU_FLUSH_DEPTH_TS);
 
    if (flushes & FD6_INVALIDATE_CCU_COLOR)
       event_write(ctx, ring, PC_CCU_INVALIDATE_COLOR);

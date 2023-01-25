@@ -154,9 +154,9 @@ tu6_emit_flushes(struct tu_cmd_buffer *cmd_buffer,
    if (flushes & (TU_CMD_FLAG_CCU_FLUSH_COLOR |
                   TU_CMD_FLAG_CCU_INVALIDATE_COLOR))
       tu6_emit_event_write(cmd_buffer, cs, PC_CCU_FLUSH_COLOR_TS);
-   if (flushes & (TU_CMD_FLAG_CCU_FLUSH_DEPTH |
-                  TU_CMD_FLAG_CCU_INVALIDATE_DEPTH))
-      tu6_emit_event_write(cmd_buffer, cs, PC_CCU_FLUSH_DEPTH_TS);
+//   if (flushes & (TU_CMD_FLAG_CCU_FLUSH_DEPTH |
+//                  TU_CMD_FLAG_CCU_INVALIDATE_DEPTH))
+//      tu6_emit_event_write(cmd_buffer, cs, PC_CCU_FLUSH_DEPTH_TS);
    if (flushes & TU_CMD_FLAG_CCU_INVALIDATE_COLOR)
       tu6_emit_event_write(cmd_buffer, cs, PC_CCU_INVALIDATE_COLOR);
    if (flushes & TU_CMD_FLAG_CCU_INVALIDATE_DEPTH)
@@ -831,8 +831,8 @@ tu6_emit_sysmem_resolves(struct tu_cmd_buffer *cmd,
        * last sentence and the fact that we're in sysmem mode.
        */
       tu6_emit_event_write(cmd, cs, PC_CCU_FLUSH_COLOR_TS);
-      if (subpass->resolve_depth_stencil)
-         tu6_emit_event_write(cmd, cs, PC_CCU_FLUSH_DEPTH_TS);
+//      if (subpass->resolve_depth_stencil)
+//         tu6_emit_event_write(cmd, cs, PC_CCU_FLUSH_DEPTH_TS);
 
       tu6_emit_event_write(cmd, cs, CACHE_INVALIDATE);
 

@@ -452,8 +452,8 @@ update_vsc_pipe(struct fd_batch *batch)
 
    OUT_REG(ring, A6XX_VSC_BIN_COUNT(.nx = gmem->nbins_x, .ny = gmem->nbins_y));
 
-   OUT_PKT4(ring, REG_A6XX_VSC_PIPE_CONFIG_REG(0), 32);
-   for (i = 0; i < 32; i++) {
+   OUT_PKT4(ring, REG_A6XX_VSC_PIPE_CONFIG_REG(0), gmem->num_vsc_pipes);
+   for (i = 0; i < gmem->num_vsc_pipes; i++) {
       const struct fd_vsc_pipe *pipe = &gmem->vsc_pipe[i];
       OUT_RING(ring, A6XX_VSC_PIPE_CONFIG_REG_X(pipe->x) |
                         A6XX_VSC_PIPE_CONFIG_REG_Y(pipe->y) |

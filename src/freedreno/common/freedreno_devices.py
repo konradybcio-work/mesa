@@ -108,12 +108,12 @@ class A6xxGPUInfo(GPUInfo):
        into distinct sub-generations.  The template parameter avoids
        duplication of parameters that are unique to the sub-generation.
     """
-    def __init__(self, template, num_sp_cores, num_ccu, magic_regs):
+    def __init__(self, template, num_sp_cores, num_ccu, magic_regs, num_vsc_pipes):
         super().__init__(gmem_align_w = 16, gmem_align_h = 4,
                          tile_align_w = 32, tile_align_h = 32,
                          tile_max_w   = 1024, # max_bitfield_val(5, 0, 5)
                          tile_max_h   = max_bitfield_val(14, 8, 4),
-                         num_vsc_pipes = 32)
+                         num_vsc_pipes = num_vsc_pipes)
         assert(num_sp_cores == num_ccu)
 
         self.num_sp_cores = num_sp_cores
@@ -267,6 +267,30 @@ a6xx_gen4 = dict(
     )
 
 add_gpus([
+        GPUId(610),
+    ], A6xxGPUInfo(
+        a6xx_gen1,
+        num_sp_cores = 1,
+        num_ccu = 1,
+        magic_regs = dict(
+            PC_POWER_CNTL = 0,
+            TPL1_DBG_ECO_CNTL = 0,
+            GRAS_DBG_ECO_CNTL = 0,
+            SP_CHICKEN_BITS = 0x400,
+            UCHE_CLIENT_PF = 0x00000004,
+            PC_MODE_CNTL = 0xf,
+            SP_DBG_ECO_CNTL = 0x0, # TODO confirm
+            RB_DBG_ECO_CNTL = 0x04100000, # TODO confirm
+            RB_DBG_ECO_CNTL_blit = 0x05100000, # TODO confirm
+            HLSQ_DBG_ECO_CNTL = 0,
+            RB_UNKNOWN_8E01 = 0x00000001,
+            VPC_DBG_ECO_CNTL = 0x0,
+            UCHE_UNKNOWN_0E12 = 0x13200000
+        ),
+        num_vsc_pipes = 16,
+    ))
+
+add_gpus([
         GPUId(615),
         GPUId(616),
         GPUId(618),
@@ -289,7 +313,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x0,
             UCHE_UNKNOWN_0E12 = 0x00000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 add_gpus([
@@ -312,7 +337,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
             UCHE_UNKNOWN_0E12 = 0x00000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 add_gpus([
@@ -335,7 +361,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x0,
             UCHE_UNKNOWN_0E12 = 0x10000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 add_gpus([
@@ -358,7 +385,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x02000000,
             UCHE_UNKNOWN_0E12 = 0x00000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 add_gpus([
@@ -381,7 +409,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x02000000,
             UCHE_UNKNOWN_0E12 = 0x00000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 add_gpus([
@@ -405,7 +434,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
             UCHE_UNKNOWN_0E12 = 0x00000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 add_gpus([
@@ -432,7 +462,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
             UCHE_UNKNOWN_0E12 = 0x00000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 add_gpus([
@@ -455,7 +486,8 @@ add_gpus([
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
             UCHE_UNKNOWN_0E12 = 0x00000001
-        )
+        ),
+        num_vsc_pipes = 32,
     ))
 
 template = """\

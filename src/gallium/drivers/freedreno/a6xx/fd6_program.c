@@ -865,7 +865,7 @@ setup_stateobj(struct fd_ringbuffer *ring, struct fd_context *ctx,
                      A6XX_PC_VS_OUT_CNTL_CLIP_MASK(clip_cull_mask));
 
    OUT_PKT4(ring, REG_A6XX_HLSQ_CONTROL_1_REG, 5);
-   OUT_RING(ring, 0x7); /* XXX */
+   OUT_RING(ring, 0x3); /* XXX */
    OUT_RING(ring, A6XX_HLSQ_CONTROL_2_REG_FACEREGID(face_regid) |
                      A6XX_HLSQ_CONTROL_2_REG_SAMPLEID(samp_id_regid) |
                      A6XX_HLSQ_CONTROL_2_REG_SAMPLEMASK(smask_in_regid) |

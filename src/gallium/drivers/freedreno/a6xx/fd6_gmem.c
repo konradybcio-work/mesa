@@ -768,7 +768,7 @@ emit_binning_pass(struct fd_batch *batch) assert_dt
    OUT_REG(ring,
            A6XX_RB_CCU_CNTL(.color_offset = screen->ccu_offset_gmem,
                             .gmem = true,
-                            .concurrent_resolve = screen->info->a6xx.concurrent_resolve));
+                            .concurrent_resolve = screen->info->a6xx.concurrent_resolve, .unk21 = true, .unk1 = true));
 }
 
 static void
@@ -836,7 +836,8 @@ fd6_emit_tile_init(struct fd_batch *batch) assert_dt
    OUT_REG(ring,
            A6XX_RB_CCU_CNTL(.color_offset = screen->ccu_offset_gmem,
                             .gmem = true,
-                            .concurrent_resolve = screen->info->a6xx.concurrent_resolve));
+                            .concurrent_resolve = screen->info->a6xx.concurrent_resolve,
+                            .unk21 = true, .unk1 = true));
 
    emit_zs(ring, pfb->zsbuf, batch->gmem_state);
    emit_mrt(ring, pfb, batch->gmem_state);
@@ -1616,7 +1617,8 @@ fd6_emit_sysmem_prep(struct fd_batch *batch) assert_dt
    fd6_cache_inv(batch, ring);
 
    fd_wfi(batch, ring);
-   OUT_REG(ring, A6XX_RB_CCU_CNTL(.color_offset = screen->ccu_offset_bypass));
+   // TODO: BIT21 causes garbage, BIT1 doesn't, figure out if it's necessary though
+   OUT_REG(ring, A6XX_RB_CCU_CNTL(.color_offset = screen->ccu_offset_bypass, .unk1 = true));
 
    /* enable stream-out, with sysmem there is only one pass: */
    OUT_REG(ring, A6XX_VPC_SO_DISABLE(false));

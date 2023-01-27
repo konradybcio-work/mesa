@@ -280,7 +280,7 @@ add_gpus([
             UCHE_CLIENT_PF = 0x00000004,
             PC_MODE_CNTL = 0xf,
             SP_DBG_ECO_CNTL = 0x0, # TODO confirm
-            # RB_DBG_ECO_CNTL = 0x04100000, # TODO confirm
+            RB_DBG_ECO_CNTL = 0x04100000, # TODO confirm
             RB_DBG_ECO_CNTL_blit = 0x05100000, # TODO confirm
             HLSQ_DBG_ECO_CNTL = 0,
             RB_UNKNOWN_8E01 = 0x00000001,

@@ -398,8 +398,8 @@ tex_opc_to_prefetch_cmd(opc_t tex_opc)
 }
 
 static void
-setup_stateobj(struct fd_ringbuffer *ring, struct fd_context *ctx,
-               struct fd6_program_state *state,
+setup_stateobj(struct fd_screen *screen, struct fd_ringbuffer *ring,
+               struct fd_context *ctx, struct fd6_program_state *state,
                const struct ir3_cache_key *cache_key,
                bool binning_pass) assert_dt
 {
@@ -865,7 +865,7 @@ setup_stateobj(struct fd_ringbuffer *ring, struct fd_context *ctx,
                      A6XX_PC_VS_OUT_CNTL_CLIP_MASK(clip_cull_mask));
 
    OUT_PKT4(ring, REG_A6XX_HLSQ_CONTROL_1_REG, 5);
-   OUT_RING(ring, 0x7); /* XXX */
+   OUT_RING(ring, screen->info->a6xx.magic.HLSQ_CONTROL_1_REG_MODE); /* XXX */
    OUT_RING(ring, A6XX_HLSQ_CONTROL_2_REG_FACEREGID(face_regid) |
                      A6XX_HLSQ_CONTROL_2_REG_SAMPLEID(samp_id_regid) |
                      A6XX_HLSQ_CONTROL_2_REG_SAMPLEMASK(smask_in_regid) |
@@ -1337,8 +1337,8 @@ fd6_program_create(void *data, struct ir3_shader_variant *bs,
    }
 
    setup_config_stateobj(ctx, state);
-   setup_stateobj(state->binning_stateobj, ctx, state, key, true);
-   setup_stateobj(state->stateobj, ctx, state, key, false);
+   setup_stateobj(screen, state->binning_stateobj, ctx, state, key, true);
+   setup_stateobj(screen, state->stateobj, ctx, state, key, false);
    state->interp_stateobj = create_interp_stateobj(ctx, state);
 
    const struct ir3_stream_output_info *stream_output =

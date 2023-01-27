@@ -285,7 +285,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0,
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x0,
-            UCHE_UNKNOWN_0E12 = 0x13200000
+            UCHE_UNKNOWN_0E12 = 0x13200000,
+            HLSQ_CONTROL_1_REG_MODE = 0x3
         ),
         num_vsc_pipes = 16,
     ))
@@ -312,7 +313,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x00080000,
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x0,
-            UCHE_UNKNOWN_0E12 = 0x00000001
+            UCHE_UNKNOWN_0E12 = 0x00000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))
@@ -336,7 +338,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x0,
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
-            UCHE_UNKNOWN_0E12 = 0x00000001
+            UCHE_UNKNOWN_0E12 = 0x00000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))
@@ -360,7 +363,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x00080000,
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x0,
-            UCHE_UNKNOWN_0E12 = 0x10000001
+            UCHE_UNKNOWN_0E12 = 0x10000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))
@@ -384,7 +388,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x0,
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x02000000,
-            UCHE_UNKNOWN_0E12 = 0x00000001
+            UCHE_UNKNOWN_0E12 = 0x00000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))
@@ -408,7 +413,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x0,
             RB_UNKNOWN_8E01 = 0x00000001,
             VPC_DBG_ECO_CNTL = 0x02000000,
-            UCHE_UNKNOWN_0E12 = 0x00000001
+            UCHE_UNKNOWN_0E12 = 0x00000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))
@@ -433,7 +439,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x0,
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
-            UCHE_UNKNOWN_0E12 = 0x00000001
+            UCHE_UNKNOWN_0E12 = 0x00000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))
@@ -461,7 +468,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x0,
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
-            UCHE_UNKNOWN_0E12 = 0x00000001
+            UCHE_UNKNOWN_0E12 = 0x00000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))
@@ -485,7 +493,8 @@ add_gpus([
             HLSQ_DBG_ECO_CNTL = 0x0,
             RB_UNKNOWN_8E01 = 0x0,
             VPC_DBG_ECO_CNTL = 0x02000000,
-            UCHE_UNKNOWN_0E12 = 0x00000001
+            UCHE_UNKNOWN_0E12 = 0x00000001,
+            HLSQ_CONTROL_1_REG_MODE = 0x7
         ),
         num_vsc_pipes = 32,
     ))

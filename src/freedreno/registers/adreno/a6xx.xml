@@ -1956,6 +1956,7 @@ to upconvert to 32b float internally?
 
 	<reg32 offset="0x8801" name="RB_RENDER_CNTL">
 		<bitfield name="CCUSINGLECACHELINESIZE" low="3" high="5"/>
+		<bitfield name="UNK4" pos="4" type="boolean"/>
 		<bitfield name="EARLYVIZOUTEN" pos="6" type="boolean"/>
 		<!-- set during binning pass: -->
 		<bitfield name="BINNING" pos="7" type="boolean"/>

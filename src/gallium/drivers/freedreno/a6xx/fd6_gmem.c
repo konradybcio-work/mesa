@@ -381,9 +381,11 @@ update_render_cntl(struct fd_batch *batch, struct pipe_framebuffer_state *pfb,
          mrts_ubwc_enable |= 1 << i;
    }
 
-   cntl |= A6XX_RB_RENDER_CNTL_CCUSINGLECACHELINESIZE(2);
+   // cntl |= A6XX_RB_RENDER_CNTL_CCUSINGLECACHELINESIZE(2);
    if (binning)
       cntl |= A6XX_RB_RENDER_CNTL_BINNING;
+
+   cntl |= A6XX_RB_RENDER_CNTL_UNK4;
 
    if (screen->info->a6xx.has_cp_reg_write) {
       OUT_PKT7(ring, CP_REG_WRITE, 3);
@@ -846,7 +848,7 @@ fd6_emit_tile_init(struct fd_batch *batch) assert_dt
 
    if (use_hw_binning(batch)) {
       /* enable stream-out during binning pass: */
-      OUT_REG(ring, A6XX_VPC_SO_DISABLE(false));
+      OUT_REG(ring, A6XX_VPC_SO_DISABLE(true));
 
       set_bin_size(ring, gmem->bin_w, gmem->bin_h,
                    A6XX_RB_BIN_CONTROL_RENDER_MODE(BINNING_PASS) |
@@ -868,14 +870,14 @@ fd6_emit_tile_init(struct fd_batch *batch) assert_dt
                    A6XX_RB_BIN_CONTROL_FORCE_LRZ_WRITE_DIS |
                    A6XX_RB_BIN_CONTROL_LRZ_FEEDBACK_ZMODE_MASK(0x6));
 
-      OUT_PKT4(ring, REG_A6XX_VFD_MODE_CNTL, 1);
+      OUT_PKT4(ring, REG_A6XX_VFD_MODE_CNTL, 0);
       OUT_RING(ring, 0x0);
 
-      OUT_PKT4(ring, REG_A6XX_PC_POWER_CNTL, 0);
-      OUT_RING(ring, screen->info->a6xx.magic.PC_POWER_CNTL);
+      // OUT_PKT4(ring, REG_A6XX_PC_POWER_CNTL, 0);
+      // OUT_RING(ring, screen->info->a6xx.magic.PC_POWER_CNTL);
 
-      OUT_PKT4(ring, REG_A6XX_VFD_POWER_CNTL, 0);
-      OUT_RING(ring, screen->info->a6xx.magic.PC_POWER_CNTL);
+      // OUT_PKT4(ring, REG_A6XX_VFD_POWER_CNTL, 0);
+      // OUT_RING(ring, screen->info->a6xx.magic.PC_POWER_CNTL);
 
       OUT_PKT7(ring, CP_SKIP_IB2_ENABLE_GLOBAL, 1);
       OUT_RING(ring, 0x1);
@@ -1492,7 +1494,7 @@ fd6_emit_tile_fini(struct fd_batch *batch)
    emit_common_fini(batch);
 
    OUT_PKT4(ring, REG_A6XX_GRAS_LRZ_CNTL, 1);
-   OUT_RING(ring, A6XX_GRAS_LRZ_CNTL_ENABLE);
+   OUT_RING(ring, 0);
 
    fd6_emit_lrz_flush(ring);
 

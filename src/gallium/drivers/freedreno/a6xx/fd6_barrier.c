@@ -41,11 +41,12 @@ event_write(struct fd_context *ctx, struct fd_ringbuffer *ring,
    case CACHE_FLUSH_TS:
    case WT_DONE_TS:
    case RB_DONE_TS:
-//   case PC_CCU_FLUSH_DEPTH_TS:
    case PC_CCU_FLUSH_COLOR_TS:
    case PC_CCU_RESOLVE_TS:
       timestamp = true;
       break;
+   case PC_CCU_FLUSH_DEPTH_TS:
+      return 0;
    default:
       break;
    }
